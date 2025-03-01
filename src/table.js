@@ -1,5 +1,5 @@
 class Table {
-  boundary(width = 5, height = 5) {
+  constructor(width = 5, height = 5) {
     this.width = width;
     this.height = height;
   }
@@ -9,4 +9,4 @@ class Table {
   }
 }
 
-module.exports = Table;
+export default Table;

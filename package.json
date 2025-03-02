@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node --experimental-vm-modules jest"
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
   "homepage": "https://github.com/ambo-n/Toy-Robot-Simulator#readme",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {}
   }
 }

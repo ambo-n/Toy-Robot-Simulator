@@ -9,8 +9,14 @@ const rl = readline.createInterface({
 
 const robot = new Robot();
 
-console.log("Enter commands: ");
+console.log("Enter commands(or type EXIT to quit): ");
 
 rl.on("line", (input) => {
-  processCommand(robot, input);
+  const command = input.trim().toUpperCase();
+  if (command === "EXIT") {
+    console.log("Exiting the program. Goodbye");
+    rl.close();
+    process.exit();
+  }
+  processCommand(robot, command);
 });

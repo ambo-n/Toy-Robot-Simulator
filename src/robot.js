@@ -15,6 +15,10 @@ class Robot {
       this.y = y;
       this.facing = facing;
       this.placed = true;
+    } else {
+      console.log(
+        `Error. Invalid position. Please ensure your X,Y are within boundaries of your ${this.table.width} x ${this.table.height} grid`
+      );
     }
   }
 

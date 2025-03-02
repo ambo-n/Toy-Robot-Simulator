@@ -21,7 +21,7 @@ function processCommand(robot, command) {
         !["NORTH", "SOUTH", "WEST", "EAST"].includes(facing)
       ) {
         console.log(
-          "Error: PLACE commands requires valid X,Y coordindates and a direction (NORTH, SOUTH, WEST, EAST"
+          "Error: PLACE commands requires valid X,Y coordindates and a direction (NORTH, SOUTH, WEST, EAST)"
         );
       } else {
         robot.place(x, y, facing);

@@ -62,6 +62,7 @@ test("REPORT prints out the right output", () => {
   const command6 = "REPORT";
   processCommand(robot, command6);
   expect(spy).toHaveBeenCalledWith("Output: 3, 3, NORTH");
+  spy.mockRestore();
 });
 
 test("Testing invalid PLACE command", () => {
@@ -72,6 +73,18 @@ test("Testing invalid PLACE command", () => {
   expect(spy).toHaveBeenCalledWith(
     "Error: Invalid PLACE format. Please use PLACE X,Y,FACING"
   );
+  spy.mockRestore();
+});
+
+test("Testing invalid PLACE command - when the robot is placed out of range", () => {
+  const spy = jest.spyOn(console, "log");
+  const robot = new Robot();
+  const command = "PLACE 6,8,SOUTH";
+  processCommand(robot, command);
+  expect(spy).toHaveBeenCalledWith(
+    "Error. Invalid position. Please ensure your X,Y are within boundaries of your 5 x 5 grid"
+  );
+  spy.mockRestore();
 });
 
 test("Testing first valid command to the robot must be a PLACE command.", () => {
@@ -82,9 +95,10 @@ test("Testing first valid command to the robot must be a PLACE command.", () => 
   expect(spy).toHaveBeenCalledWith(
     "Error: The first command must start with PLACE X,Y,FACING"
   );
+  spy.mockRestore();
 });
 
-test("Ensure that robot doesn't fall off the table - x direction", () => {
+test("Ensure that robot doesn't fall off the EAST edge", () => {
   const robot = new Robot();
   const spy = jest.spyOn(console, "log");
   robot.place(4, 0, "EAST");
@@ -93,12 +107,27 @@ test("Ensure that robot doesn't fall off the table - x direction", () => {
   expect(spy).toHaveBeenCalledWith(
     "Error. You may be out of range. Please ensure your X,Y are within boundaries of your 5 x 5 grid. Try LEFT/RIGHT commands to continue."
   );
+  spy.mockRestore();
   expect(robot.x).toBe(4);
   expect(robot.y).toBe(0);
   expect(robot.facing).toBe("EAST");
 });
+test("Ensure that robot doesn't fall off the WEST edge", () => {
+  const robot = new Robot();
+  const spy = jest.spyOn(console, "log");
+  robot.place(0, 0, "WEST");
+  const command = "MOVE";
+  processCommand(robot, command);
+  expect(spy).toHaveBeenCalledWith(
+    "Error. You may be out of range. Please ensure your X,Y are within boundaries of your 5 x 5 grid. Try LEFT/RIGHT commands to continue."
+  );
+  spy.mockRestore();
+  expect(robot.x).toBe(0);
+  expect(robot.y).toBe(0);
+  expect(robot.facing).toBe("WEST");
+});
 
-test("Ensure that robot doesn't fall off the table - y direction", () => {
+test("Ensure that robot doesn't fall off the NORTH edge", () => {
   const robot = new Robot();
   const spy = jest.spyOn(console, "log");
   robot.place(0, 4, "NORTH");
@@ -110,4 +139,19 @@ test("Ensure that robot doesn't fall off the table - y direction", () => {
   expect(robot.x).toBe(0);
   expect(robot.y).toBe(4);
   expect(robot.facing).toBe("NORTH");
+  spy.mockRestore();
+});
+test("Ensure that robot doesn't fall off the SOUTH edge", () => {
+  const robot = new Robot();
+  const spy = jest.spyOn(console, "log");
+  robot.place(0, 0, "SOUTH");
+  const command = "MOVE";
+  processCommand(robot, command);
+  expect(spy).toHaveBeenCalledWith(
+    "Error. You may be out of range. Please ensure your X,Y are within boundaries of your 5 x 5 grid. Try LEFT/RIGHT commands to continue."
+  );
+  expect(robot.x).toBe(0);
+  expect(robot.y).toBe(0);
+  expect(robot.facing).toBe("SOUTH");
+  spy.mockRestore();
 });

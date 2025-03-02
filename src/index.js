@@ -9,7 +9,9 @@ const rl = readline.createInterface({
 
 const robot = new Robot();
 
-console.log("Enter commands(or type EXIT to quit): ");
+console.log(
+  "Enter commands. Valid commands: PLACE X,Y,FACING, MOVE, LEFT, RIGHT, REPORT or EXIT to terminate: "
+);
 
 rl.on("line", (input) => {
   const command = input.trim().toUpperCase();

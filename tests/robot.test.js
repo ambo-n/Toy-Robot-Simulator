@@ -34,6 +34,7 @@ test("LEFT rotates correctly", () => {
   expect(robot.y).toBe(0);
   expect(robot.facing).toBe("WEST");
 });
+
 test("RIGHT rotates correctly", () => {
   const robot = new Robot();
   robot.place(0, 0, "NORTH");

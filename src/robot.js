@@ -46,6 +46,10 @@ class Robot {
     if (this.table.isValidPosition(newX, newY)) {
       this.x = newX;
       this.y = newY;
+    } else {
+      console.log(
+        `Error. You may be out of range. Please ensure your X,Y are within boundaries of your ${this.table.width} x ${this.table.height} grid. Try LEFT/RIGHT commands to continue.`
+      );
     }
   }
 

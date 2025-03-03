@@ -17,7 +17,7 @@ The Toy Robot Simulator is a Node.js application that simulates a toy robot movi
 
 ## Logic
 
-- Table Class (table.js): Manages the grid size and validates whether a position is within bounds. The default size is 5x5, but this can be modified when instantiating the table.
+- Table Class (table.js): Manages the grid size and validates whether a position is within bounds. The default size is 5x5, but this can be modified when instantiating the table. Since grid-based coordinates in programming are zero-indexed, the valid range for both X and Y coordinates in a 5x5 grid is 0 to 4 (inclusive).
 
 - Robot Class (robot.js): Handles the robot's position, direction, and movement logic. It ensures that any move remains within the valid grid boundaries.
 
@@ -84,6 +84,11 @@ Unit tests are included to ensure correct functionality. Run the tests with:
 npm test
 ```
 
-#### Example test data
+#### Program execution example
 
-#### Example test results
+![Program execution example](./img/test-example.png)
+
+#### Expected test results when running unit tests
+
+![Unit Test Result](./img/unit-test-results2.png)
+![Unit Test Result - second image file](./img/unit-test-results1.png)
